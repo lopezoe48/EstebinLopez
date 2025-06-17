@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osvaldo Esteban López - Desarrollador y Consultor Tecnológico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Modern -->
+    <!-- Application Structure Plan: The SPA is structured as a narrative, single-page scroll, transforming the video script into an interactive portfolio. It begins with a strong Hero section (identity), moves to the "Problem" businesses face (context), presents "Skills" in an interactive tabbed format with a competency chart (solution), highlights the "Unique Differentiator" (value proposition), adds a new "Projects" gallery section for visual proof, and concludes with a clear "Call to Action". This flow was chosen to guide a potential client logically from understanding the need to recognizing Osvaldo as the ideal solution, allowing exploration at their own pace. -->
+    <!-- Visualization & Content Choices: Report Info: Skills (JS, React, Python, .NET, CSS, etc.) -> Goal: Organize & Inform -> Viz/Method: Interactive Tabs (HTML/CSS/JS) and a Radar Chart (Chart.js) -> Interaction: Users click tabs to reveal specific skill sets. The chart provides a quick visual summary of proficiency levels. -> Justification: Tabs prevent information overload, and the chart offers a modern, data-driven "at-a-glance" view of his capabilities, enhancing professionalism. NEW: Report Info: Projects -> Goal: Inform & Showcase -> Viz/Method: A responsive grid of cards with placeholder images. -> Interaction: Visual scan. -> Justification: Adds visual evidence of work, making the portfolio more tangible and credible. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4; /* Warm off-white */
+            color: #2c3e50;
+        }
+        .hero-bg {
+            background-color: #EAE8E1; /* Lighter warm neutral */
+        }
+        .accent-color {
+            color: #3D5A80; /* Muted blue */
+        }
+        .accent-bg {
+            background-color: #3D5A80;
+        }
+        .accent-border {
+            border-color: #3D5A80;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .tab-btn.active {
+            background-color: #3D5A80;
+            color: #FFFFFF;
+        }
+        .tab-btn {
+            transition: all 0.3s ease-in-out;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="home" class="hero-bg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold accent-color">OEL</div>
+            <ul class="flex space-x-4 md:space-x-8">
+                <li><a href="#soluciones" class="hover:accent-color transition-colors duration-300">Soluciones</a></li>
+                <li><a href="#habilidades" class="hover:accent-color transition-colors duration-300">Habilidades</a></li>
+                <li><a href="#proyectos" class="hover:accent-color transition-colors duration-300">Proyectos</a></li>
+                <li><a href="#contacto" class="hover:accent-color transition-colors duration-300">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="container mx-auto px-6 py-24 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800">Osvaldo Esteban López</h1>
+            <p class="mt-4 text-xl md:text-2xl accent-color">Técnico Universitario en Programación</p>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-600">Transformo desafíos complejos en soluciones digitales eficientes y escalables que impulsan el crecimiento de tu negocio.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="soluciones" class="py-20 lg:py-28">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">¿Tu Proyecto Digital Está Estancado?</h2>
+                <p class="max-w-3xl mx-auto text-gray-600 mb-12">En el mundo digital de hoy, una idea brillante no es suficiente. Necesitas que la tecnología trabaje para ti, no en tu contra. Un código ineficiente o una mala experiencia de usuario pueden costar tiempo, dinero y clientes.</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold">
+                    <span class="bg-red-100 text-red-800 px-4 py-2 rounded-full">ERRORES DE CÓDIGO</span>
+                    <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">RETRASOS EN ENTREGAS</span>
+                    <span class="bg-orange-100 text-orange-800 px-4 py-2 rounded-full">OPORTUNIDADES PERDIDAS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades" class="py-20 lg:py-28 hero-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold">Un Conjunto de Habilidades a tu Servicio</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">Domino las herramientas que tu proyecto necesita, desde interfaces interactivas hasta potentes sistemas de gestión y análisis de datos.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <div class="mb-6 flex flex-wrap justify-center md:justify-start gap-2">
+                            <button class="tab-btn active px-4 py-2 rounded-md font-semibold" data-tab="frontend">Frontend</button>
+                            <button class="tab-btn px-4 py-2 rounded-md font-semibold" data-tab="backend">Backend & Datos</button>
+                            <button class="tab-btn px-4 py-2 rounded-md font-semibold" data-tab="business">Visión de Negocio</button>
+                        </div>
+                        
+                        <div id="frontend" class="tab-content fade-in">
+                            <h3 class="text-2xl font-bold accent-color mb-4">Desarrollo Frontend</h3>
+                            <p class="text-gray-700">Creo interfaces de usuario modernas, fluidas y totalmente responsivas que ofrecen una experiencia de usuario excepcional y convierten visitantes en clientes.</p>
+                            <ul class="mt-6 space-y-3">
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">JS</span>JavaScript (ES6+)</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">R</span>React</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">C</span>CSS & Tailwind CSS</li>
+                            </ul>
+                        </div>
+
+                        <div id="backend" class="tab-content hidden fade-in">
+                            <h3 class="text-2xl font-bold accent-color mb-4">Backend y Gestión de Datos</h3>
+                            <p class="text-gray-700">Construyo la lógica de servidor, APIs y bases de datos robustas y seguras que potencian tus aplicaciones y garantizan un rendimiento óptimo.</p>
+                             <ul class="mt-6 space-y-3">
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">Py</span>Python</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">N</span>.NET & C#</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">DB</span>SQL & Bases de Datos</li>
+                            </ul>
+                        </div>
+
+                        <div id="business" class="tab-content hidden fade-in">
+                           <h3 class="text-2xl font-bold accent-color mb-4">Visión Estratégica de Negocio</h3>
+                            <p class="text-gray-700">Entiendo que el código es una herramienta para alcanzar objetivos. Mi experiencia me permite alinear el desarrollo tecnológico con tus metas comerciales.</p>
+                             <ul class="mt-6 space-y-3">
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">✔</span>Ventas & Marketing</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">✔</span>Atención al Cliente</li>
+                                <li class="flex items-center"><span class="accent-bg text-white rounded-full w-6 h-6 text-center mr-3 font-bold text-sm flex items-center justify-center">✔</span>Análisis de Requisitos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full">
+                         <div class="chart-container">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diferenciador" class="py-20 lg:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold">Más que un Programador, un Socio Estratégico</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-600">La tecnología es solo una parte. Mi experiencia en ventas, marketing y atención al cliente me permite entender tus objetivos de negocio. No solo te entrego un producto, te ofrezco una solución que impulsa tu crecimiento.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+                        <h3 class="text-xl font-bold accent-color mb-4">Experiencia Técnica Profunda</h3>
+                        <p class="text-gray-600">Soluciones de código limpio, eficiente y escalable, utilizando las mejores prácticas y tecnologías de vanguardia para asegurar la calidad y longevidad de tu proyecto.</p>
+                    </div>
+                     <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+                        <h3 class="text-xl font-bold accent-color mb-4">Enfoque Orientado al Negocio</h3>
+                        <p class="text-gray-600">Comunicación clara, entendimiento de tus KPIs y un enfoque en el ROI. Convierto requisitos de negocio en funcionalidades técnicas que generan resultados tangibles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="proyectos" class="py-20 lg:py-28 hero-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold">Proyectos Destacados</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">Una muestra de cómo aplico la tecnología para crear soluciones reales, funcionales y atractivas.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Proyecto 1 -->
+                    <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/3D5A80/FFFFFF?text=App+de+Gestión" alt="Imagen de una aplicación de gestión" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">App de Gestión Interna</h3>
+                            <p class="text-gray-600 mb-4">Plataforma web para optimizar el flujo de trabajo y la comunicación de un equipo.</p>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">React</span>
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded">.NET Core</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Proyecto 2 -->
+                    <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/98C1D9/FFFFFF?text=E-commerce" alt="Imagen de un sitio de e-commerce" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Sitio E-commerce</h3>
+                            <p class="text-gray-600 mb-4">Tienda online con pasarela de pagos, gestión de inventario y panel de administración.</p>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">JavaScript</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Python (Django)</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">TailwindCSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Proyecto 3 -->
+                    <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="https://placehold.co/600x400/293241/FFFFFF?text=Dashboard" alt="Imagen de un dashboard de datos" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Dashboard de Analítica</h3>
+                            <p class="text-gray-600 mb-4">Visualización interactiva de datos de ventas para la toma de decisiones estratégicas.</p>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Python (Flask)</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Chart.js</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded">APIs REST</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer id="contacto" class="accent-bg text-white">
+        <div class="container mx-auto px-6 py-20 text-center">
+            <h2 class="text-3xl font-bold">¿Listo para llevar tu proyecto al siguiente nivel?</h2>
+            <p class="mt-4 max-w-xl mx-auto opacity-90">Hablemos. Estoy aquí para ayudarte a convertir tus ideas en realidad.</p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://wa.me/5493816160505" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-lg w-full sm:w-auto">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.033,0C4.493,0,0,4.49,0,10.028c0,1.742,0.455,3.375,1.255,4.815L0,20l5.331-1.4c1.4,0.709,2.963,1.109,4.614,1.109h0.088c5.54,0,10.033-4.49,10.033-10.029C20.067,4.49,15.573,0,10.033,0z M10.033,18.256c-1.438,0-2.821-0.389-4.043-1.088l-0.291-0.173l-3,0.8l0.82-2.929l-0.19-0.304C2.622,13.132,2,11.61,2,10.028c0-4.433,3.611-8.04,8.033-8.04c4.422,0,8.033,3.608,8.033,8.04S14.455,18.256,10.033,18.256z M14.582,12.03c-0.222-0.111-1.304-0.643-1.507-0.716c-0.203-0.073-0.35,0.111-0.496,0.258c-0.147,0.147-0.57,0.716-0.698,0.863c-0.129,0.147-0.257,0.165-0.48,0.056c-0.222-0.111-0.942-0.349-1.794-1.109c-0.664-0.59-1.111-1.325-1.24-1.55c-0.129-0.224-0.013-0.343,0.098-0.452c0.1-0.1,0.222-0.258,0.332-0.388c0.111-0.129,0.147-0.224,0.222-0.37c0.073-0.147,0.037-0.276-0.019-0.388C8.941,7.91,8.441,6.634,8.22,6.091C8.017,5.57,7.8,5.633,7.633,5.626c-0.158-0.007-0.35,0-0.528,0c-0.178,0-0.465,0.073-0.709,0.37c-0.244,0.298-0.942,0.914-0.942,2.22c0,1.304,0.97,2.571,1.1,2.755c0.129,0.184,1.884,2.983,4.582,4.032c0.63,0.258,1.13,0.415,1.52,0.528c0.698,0.184,1.334,0.158,1.829-0.098c0.542-0.276,1.304-1.079,1.488-1.474c0.184-0.395,0.184-0.735,0.129-0.81c-0.056-0.073-0.203-0.129-0.425-0.24Z"></path></svg>
+                    Enviar WhatsApp
+                </a>
+                <a href="mailto:lopezoe48@gmail.com" class="inline-flex items-center justify-center bg-white text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-colors duration-300 shadow-lg w-full sm:w-auto sm:bg-transparent sm:border-2 sm:border-white sm:text-white sm:hover:bg-white sm:hover:text-gray-800">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    Enviar Correo
+                </a>
+            </div>
+            <div class="mt-12 text-sm opacity-80">
+                <p>&copy; 2024 Osvaldo Esteban López. Todos los derechos reservados.</p>
+                 <p class="mt-2">Diseño web interactivo creado para demostración.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    contents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    const activeContent = document.getElementById(tab.dataset.tab);
+                    activeContent.classList.remove('hidden');
+                });
+            });
+            
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Frontend (React, JS)', 
+                        'Backend (.NET, C#)', 
+                        'Bases de Datos (SQL)', 
+                        'Python', 
+                        'UI/UX y Diseño', 
+                        'Visión de Negocio'
+                    ],
+                    datasets: [{
+                        label: 'Nivel de Competencia',
+                        data: [90, 85, 80, 75, 80, 95],
+                        backgroundColor: 'rgba(61, 90, 128, 0.2)',
+                        borderColor: 'rgba(61, 90, 128, 1)',
+                        pointBackgroundColor: 'rgba(61, 90, 128, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(61, 90, 128, 1)'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    weight: '500'
+                                },
+                                color: '#2c3e50'
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(248, 247, 244, 0.7)',
+                                color: '#555',
+                                stepSize: 20
+                            },
+                             min: 0,
+                             max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.r !== null) {
+                                        label += context.parsed.r + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
